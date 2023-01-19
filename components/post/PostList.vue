@@ -1,6 +1,6 @@
 <template>
   <div class="container-fluid mt-5 d-flex flex-wrap justify-content-center align-items-center">
-    <Post v-for="(i, index) in 5" key="index" />
+    <Post v-for="(i, index) in 5" key="index" :isAdmin="isAdmin"/>
   </div>
 </template>
 
@@ -9,6 +9,13 @@
   export default{
     components:{
       Post
+    },
+    props:{
+      isAdmin:{
+        required:false,
+        type:Boolean,
+        default:false
+      }
     }
   }
 </script>
