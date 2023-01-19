@@ -1,5 +1,5 @@
 <template>
-  <PostForm />
+  <PostForm :isUpdate="true"/>
 </template>
 
 <script>
