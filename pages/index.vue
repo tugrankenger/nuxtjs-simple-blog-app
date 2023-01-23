@@ -29,30 +29,15 @@ export default {
     }
   },
 
-  fetch(context) {
-    // console.log(context)
-    return new Promise((resolve, reject) => {
-      context.store.dispatch('setPosts', [
-          {
-            id: 1,
-            title: 'Lorem ipsum dolor sit amet',
-            subTitle: 'Lorem i',
-            text: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam sapiente voluptatum rerum fuga quis. Eos voluptas autem reprehenderit ratione esse?',
-            author: 'tugrankenger'
-          },
-          {
-            id: 2,
-            title: 'Lorem ipsum dolor sit amet 222',
-            subTitle: 'Lorem i 222',
-            text: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam sapiente voluptatum rerum fuga quis. Eos voluptas autem reprehenderit ratione esse?',
-            author: 'tugrankenger'
-          }
-        ])
-      resolve()
-      reject(new Error())
-    }).catch(e => {
-      return e
-    })
-  },
+  // fetch(context) {
+  //   // console.log(context)
+  //   return new Promise((resolve, reject) => {
+  //     context.store.dispatch('setPosts', )
+  //     resolve()
+  //     reject(new Error())
+  //   }).catch(e => {
+  //     return e
+  //   })
+  // },
 }
 </script>
