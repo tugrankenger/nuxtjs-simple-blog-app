@@ -1,21 +1,24 @@
 <template>
-  <div class="container mt-5 d-flex flex-column justify-content-center align-items-center">
-    <blockquote class="blockquote">
-      <h3>Content Title</h3>
-      <p>Sub Title</p>
-      <p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti eveniet hic ipsa iusto
-        molestias quaerat quisquam tenetur voluptatem! Commodi debitis et facilis impedit in necessitatibus odio,
-        repudiandae sapiente sed veniam. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci, amet atque
-        dicta dignissimos distinctio dolores enim inventore iure nam quam quis repellat ullam voluptatem! Amet fuga
-        laudantium optio tempore. Ab? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam commodi harum
-        nemo qui quos reiciendis repudiandae sequi, ut. Adipisci assumenda ducimus explicabo harum impedit minima porro,
-        unde. Ad, neque, quas!Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda, aut dolore impedit
-        mollitia
-        nobis perspiciatis quis reprehenderit sed? Amet beatae debitis dicta libero magnam odio perferendis qui sit
-        velit
-        voluptatibus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
-        <footer class="blockquote-footer text-warning mt-3">Nuxt.js | <cite title="Source Title">Blog App</cite></footer>
-    </blockquote>
-
-  </div>
+  <PostDetail :post ="fetchedPost"/>
 </template>
+
+<script>
+import PostDetail from '@/components/post/PostDetail'
+
+export default{
+  comments:{
+    PostDetail
+  },
+  asyncData(context, callback) {
+    callback(null,{
+      fetchedPost:{
+        id:1,
+        title:'test post title, id info: '+context.params.postId,
+        subTitle:'test post subTitle',
+        text:'Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis eveniet explicabo numquam quaerat sit nobis quas aliquid hic dolore, vel atque aliquam ab dolorum, delectus quasi eligendi quia id ut.',
+        author:'tugrankenger'
+      }
+    })
+  },
+}
+</script>
