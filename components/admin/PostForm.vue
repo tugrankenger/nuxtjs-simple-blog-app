@@ -44,12 +44,26 @@
         required: false,
         default:false,
         type:Boolean
+      },
+      post:{
+        type: Object,
+        required: false,
+        default: {}
       }
     },
     methods:{
       onSubmit(){
         // console.log(this.post)
         this.$emit('submit', this.post)
+      }
+    },
+    mounted(){
+      this.post = this.post ? this.post : {
+        id:null,
+        title:null,
+        subTitle: null,
+        text:null,
+        author:null
       }
     }
   }

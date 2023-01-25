@@ -1,3 +1,5 @@
+//const axios = require('axios/dist/node/axios.cjs'); // node
+import axios from 'axios'
 export const state = () =>({
   fetchedPost:[]
 })
@@ -15,23 +17,15 @@ export const mutations = {
 }
 
 export const actions ={
-  nuxtServerInit(vuexContext, context){
-    vuexContext.commit('setPosts', [
-      {
-        id: 1,
-        title: 'Lorem ipsum dolor sit amet',
-        subTitle: 'Lorem i',
-        text: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam sapiente voluptatum rerum fuga quis. Eos voluptas autem reprehenderit ratione esse?',
-        author: 'tugrankenger'
-      },
-      {
-        id: 2,
-        title: 'Lorem ipsum dolor sit amet 222',
-        subTitle: 'Lorem i 222',
-        text: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam sapiente voluptatum rerum fuga quis. Eos voluptas autem reprehenderit ratione esse?',
-        author: 'tugrankenger'
-      }
-    ])
+  async nuxtServerInit(vuexContext, context){
+    let res =  await axios.get(`https://nuxtjs-simple-blog-app-default-rtdb.firebaseio.com/posts.json`)
+    let data = res.data
+    let postArray = []
+    for(let key in data){
+      postArray.push({id:key, ...data[key]})
+    }
+    vuexContext.commit('setPosts', postArray)
+    // vuexContext.commit('setPosts',res.data)
   },
   setPosts(vuexContext, posts){
     vuexContext.commit('setPosts', posts)
