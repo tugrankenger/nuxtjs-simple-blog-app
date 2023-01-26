@@ -1,9 +1,14 @@
 <template>
-  <PostForm :isUpdate="true" :post="loadedPost" />
+  <PostForm
+    @submit="updatePost($event)"
+    :isUpdate="true" 
+    :post="fetchedPost" 
+  />
 </template>
 
 <script>
 import PostForm from '@/components/admin/PostForm.vue'
+import axios from 'axios'
 export default {
   layout: 'admin',
   components: {
@@ -11,13 +16,23 @@ export default {
   },
   data() {
     return {
-      loadedPost: {
-        id: 1,
-        title: 'Lorem ipsum dolor sit amet',
-        subTitle: 'Lorem i',
-        text: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam sapiente voluptatum rerum fuga quis. Eos voluptas autem reprehenderit ratione esse?',
-        author: 'tugrankenger'
+
+    }
+  },
+  async asyncData(context) {
+    return await axios.get('https://nuxtjs-simple-blog-app-default-rtdb.firebaseio.com/posts/'+context.params.postId+ '.json')
+    .then(res=>{
+      return {
+        fetchedPost: res.data
       }
+    })
+  },
+  methods:{
+    updatePost(editedPost){
+      let id = this.$route.params.postId
+      this.$store.dispatch('updatePost',{id:id, ...editedPost}).then(res=>{
+        this.$router.push('/admin')
+      })
     }
   }
 }

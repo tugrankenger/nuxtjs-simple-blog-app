@@ -3,7 +3,7 @@
     <Post 
     :post="post"
     v-for="post in posts" 
-    key="post.id" 
+    :key="post.id" 
     :isAdmin="isAdmin"
     />
   </div>

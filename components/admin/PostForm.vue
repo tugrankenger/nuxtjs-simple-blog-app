@@ -29,16 +29,16 @@
 
 <script>
   export default{
-    data(){
-      return{
-        post:{
-          author:null,
-          title:null,
-          subTitle:null,
-          text:null
-        }
-      }
-    },
+    // data(){
+    //   return{
+    //     post:{
+    //       author:null,
+    //       title:null,
+    //       subTitle:null,
+    //       text:null
+    //     }
+    //   }
+    // },
     props:{
       isUpdate:{
         required: false,
@@ -48,7 +48,7 @@
       post:{
         type: Object,
         required: false,
-        default: {}
+        default:() =>({})
       }
     },
     methods:{

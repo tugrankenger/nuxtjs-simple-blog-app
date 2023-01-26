@@ -4,19 +4,17 @@
 
 <script>
 import PostDetail from '@/components/post/PostDetail'
+import axios from 'axios'
 
 export default{
   comments:{
     PostDetail
   },
-  asyncData(context, callback) {
-    callback(null,{
-      fetchedPost:{
-        id:1,
-        title:'test post title, id info: '+context.params.postId,
-        subTitle:'test post subTitle',
-        text:'Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis eveniet explicabo numquam quaerat sit nobis quas aliquid hic dolore, vel atque aliquam ab dolorum, delectus quasi eligendi quia id ut.',
-        author:'tugrankenger'
+  async asyncData(context) {
+    return await axios.get('https://nuxtjs-simple-blog-app-default-rtdb.firebaseio.com/posts/'+context.params.postId+'.json')
+    .then(res=>{
+      return {
+        fetchedPost : res.data
       }
     })
   },

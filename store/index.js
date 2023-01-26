@@ -13,6 +13,15 @@ export const getters = {
 export const mutations = {
   setPosts(state,posts){
     state.fetchedPost = posts
+  },
+  addPost(state, posts){
+    state.fetchedPost.push(posts)
+  },
+  updatePost(state, editedPost){
+    let post_index = state.fetchedPost.findIndex(item => item.id == editedPost.id)
+    if(post_index){
+      state.fetchedPost[post_index] = editedPost
+    }
   }
 }
 
@@ -29,5 +38,20 @@ export const actions ={
   },
   setPosts(vuexContext, posts){
     vuexContext.commit('setPosts', posts)
+  },
+  async addPost(vuexContext, post){
+    return await axios.post('https://nuxtjs-simple-blog-app-default-rtdb.firebaseio.com/posts.json',post).then(res=>{
+      let id = res.data.name
+      console.log({id:id, ...post})
+      vuexContext.commit('addPost', {id: id, ...post})
+    })
+  },
+  async updatePost(vuexContext,editedPost){
+    return await axios.put('https://nuxtjs-simple-blog-app-default-rtdb.firebaseio.com/posts/'+editedPost.id+'.json', editedPost)
+    .then(res=>{
+        vuexContext.commit('updatePost',editedPost)
+    }).catch(err=>{
+      console.log(err)
+    })
   }
 }
