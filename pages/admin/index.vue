@@ -18,6 +18,11 @@
       fetchedPosts(){
         return this.$store.getters.getPosts
       }
+    },
+    head(){
+      return{
+        title: 'Admin'
+      }
     }
   }
 </script>

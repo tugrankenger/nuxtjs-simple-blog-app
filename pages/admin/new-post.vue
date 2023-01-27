@@ -15,6 +15,11 @@ import PostForm from '@/components/admin/PostForm.vue'
           this.$router.push('/admin')
         })
       }
+    },
+    head(){
+      return{
+        title: 'New Post'
+      }
     }
   }
 </script>

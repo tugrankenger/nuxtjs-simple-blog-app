@@ -12,6 +12,11 @@ export default {
     fetchedPosts(){
       return this.$store.getters.getPosts
     }
+  },
+  head(){
+    return{
+      title: 'Post List'
+    }
   }
 }
 </script>

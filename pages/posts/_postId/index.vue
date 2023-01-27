@@ -18,5 +18,10 @@ export default{
       }
     })
   },
+  head(){
+    return{
+      title: this.fetchedPost.title
+    }
+  }
 }
 </script>

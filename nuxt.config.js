@@ -1,5 +1,6 @@
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
+  // mode: 'spa', // for only client side
   head: {
     title: 'nuxtjs-simple-blog-app',
     htmlAttrs: {
@@ -13,10 +14,29 @@ export default {
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
-    ]
+    ],
+    // script:[
+    //   {src: 'https://cdn...'} // for example jquery
+    // ]
   },
 
-  loading:{color: '#00FF00'},
+  loading:{color: '#00FF00', height:'2px'}, //failedColor:'#FF0000'
+
+  // loadingIndicator:{
+  //   name: 'circle',
+  //   color: 'orange'
+  // },
+
+  env:{
+    baseUrl: 'https://nuxtjs-simple-blog-app-default-rtdb.firebaseio.com/'
+  },
+
+  app:{
+    pageTransition:{
+      name:'page', // name: 'layout'
+      mode:'out-in'
+    }
+  },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [

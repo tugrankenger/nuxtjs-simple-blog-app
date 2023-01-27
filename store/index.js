@@ -27,7 +27,7 @@ export const mutations = {
 
 export const actions ={
   async nuxtServerInit(vuexContext, context){
-    let res =  await axios.get(`https://nuxtjs-simple-blog-app-default-rtdb.firebaseio.com/posts.json`)
+    let res =  await axios.get(process.env.baseUrl+'posts.json')
     let data = res.data
     let postArray = []
     for(let key in data){
@@ -40,14 +40,14 @@ export const actions ={
     vuexContext.commit('setPosts', posts)
   },
   async addPost(vuexContext, post){
-    return await axios.post('https://nuxtjs-simple-blog-app-default-rtdb.firebaseio.com/posts.json',post).then(res=>{
+    return await axios.post(process.env.baseUrl+'posts.json',post).then(res=>{
       let id = res.data.name
       console.log({id:id, ...post})
       vuexContext.commit('addPost', {id: id, ...post})
     })
   },
   async updatePost(vuexContext,editedPost){
-    return await axios.put('https://nuxtjs-simple-blog-app-default-rtdb.firebaseio.com/posts/'+editedPost.id+'.json', editedPost)
+    return await axios.put(process.env.baseUrl+'posts/'+editedPost.id+'.json', editedPost)
     .then(res=>{
         vuexContext.commit('updatePost',editedPost)
     }).catch(err=>{
